@@ -87,7 +87,7 @@
                                                                 <img src="{{ gravatar($user->email, 48) }}" class="rounded-circle width-4 height-4 {{ (__('lang_dir') == 'rtl' ? 'ml-3' : 'mr-3') }}">
 
                                                                 <div class="text-truncate">
-                                                                    <a href="{{ route('admin.users.edit', $user->id) }}" class="text-truncate">{{ $user->name }}</a>
+                                                                    <a href="{{ route('admin.users.edit', $user->id) }}" class="text-truncate ">{{ $user->name }}</a>
                                                                 </div>
                                                             </div>
                                                             <div class="d-flex align-items-center">

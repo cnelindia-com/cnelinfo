@@ -39,7 +39,7 @@
                 </div>
 
                 @include('reports.new')
-
+				
                 <div class="card border-0 shadow-sm mt-3">
                     <div class="card-header align-items-center">
                         <div class="row">
@@ -175,7 +175,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+								
                                 @foreach($reports as $report)
                                     <div class="list-group-item px-0">
                                         <div class="row align-items-center">
@@ -185,7 +185,7 @@
                                                         <div class="d-flex align-items-center text-truncate">
                                                             <img src="https://icons.duckduckgo.com/ip3/{{ parse_url($report->fullUrl, PHP_URL_HOST) }}.ico" rel="noreferrer" class="width-4 height-4 {{ (__('lang_dir') == 'rtl' ? 'ml-3' : 'mr-3') }}">
 
-                                                            <div class="text-truncate" data-enable="tooltip" title="{{ $report->url }}"><a href="{{ route('reports.show', $report->id) }}" dir="ltr">{{ $report->url }}</a></div>
+                                                            <div class="text-truncate" data-enable="tooltip" title="{{ $report->url }}"><a href="{{ route('reports.show', $report->url) }}" dir="ltr">{{ $report->url }}</a></div>
 
                                                             @if($report->result > 79)
                                                                 <div class="d-md-none badge badge-success {{ (__('lang_dir') == 'rtl' ? 'mr-2' : 'ml-2') }}">{{ __('Good') }}</div>

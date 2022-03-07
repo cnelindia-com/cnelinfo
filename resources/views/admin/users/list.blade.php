@@ -128,7 +128,7 @@
                                         <div class="d-inline-block {{ (__('lang_dir') == 'rtl' ? 'ml-3' : 'mr-3') }}">
                                             <img src="{{ gravatar($user->email, 48) }}" class="rounded-circle width-6 height-6">
                                         </div>
-                                        <a href="{{ route('admin.users.edit', $user->id) }}" class="text-truncate">{{ $user->name }}</a>
+                                        <a href="{{ route('admin.users.edit', $user->id) }}" class="text-truncate" hhhhh>{{ $user->name }}</a>
 
                                         @if($user->role == 1)
                                             <span class="badge badge-secondary {{ (__('lang_dir') == 'rtl' ? 'mr-2' : 'ml-2') }}">{{ __('Admin') }}</span>

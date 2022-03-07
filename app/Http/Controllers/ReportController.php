@@ -25,16 +25,21 @@ class ReportController extends Controller
      */
     public function index(Request $request)
     {
+		
+        
+        if(Auth::check()){
+          
         // If there's no toast notification
         if ($request->session()->get('toast') == false) {
             // Set the session to a countable object
             $request->session()->put('toast', []);
         }
-
+		
         $search = $request->input('search');
         $searchBy = in_array($request->input('search_by'), ['url']) ? $request->input('search_by') : 'url';
         $project = $request->input('project');
         $result = $request->input('result');
+
         $sortBy = in_array($request->input('sort_by'), ['id', 'generated_at', 'url', 'result']) ? $request->input('sort_by') : 'id';
         $sort = in_array($request->input('sort'), ['asc', 'desc']) ? $request->input('sort') : 'desc';
         $perPage = in_array($request->input('per_page'), [10, 25, 50, 100]) ? $request->input('per_page') : config('settings.paginate');
@@ -53,9 +58,12 @@ class ReportController extends Controller
             ->paginate($perPage)
             ->appends(['search' => $search, 'search_by' => $searchBy, 'project' => $project, 'result' => $result, 'sort_by' => $sortBy, 'sort' => $sort, 'per_page' => $perPage]);
 
-        $projects = Report::select('project')->where('user_id', $request->user()->id)->groupBy('project')->orderBy('project', 'asc')->get(['project']);
-
-        return view('reports.list', ['reports' => $reports, 'projects' => $projects]);
+              $projects = Report::select('project')->where('user_id', $request->user()->id)->groupBy('project')->orderBy('project', 'asc')->get(['project']);
+              return view('reports.list', ['reports' => $reports, 'projects' => $projects]);
+              
+            }else{   
+                return view('reports.custom_view');
+        }
     }
 
     /**
@@ -65,17 +73,29 @@ class ReportController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(Request $request, $id)
+    public function show(Request $request, $url)
     {
-        $report = Report::where('id', '=', $id)->firstOrFail();
+		
+		 $reporttest = Report::where('url', '=', $url)->select('id')->get();
+		 foreach($reporttest as $r_data){
+			$report_id =$r_data['id'];
+		 }
+		if(empty($report_id)){
+			
+			return view('reports.custom_view', ['data' => $url]);
 
-        if ($this->reportGuard($report)) {
-            return view('reports.password', ['report' => $report]);
-        }
+		}
+		else{
+		
+	 $report = Report::where('url', $url)->firstOrFail();
+       if ($this->reportGuard($report)) {
+           return view('reports.password', ['report' => $report]);
+       }
 
-        return view('reports.content', ['view' => 'show', 'report' => $report]);
-    }
-
+       return view('reports.content', ['view' => 'show', 'report' => $report]);
+		}
+	
+	}
     /**
      * Show the edit Report form.
      *
@@ -99,9 +119,25 @@ class ReportController extends Controller
      */
     public function store(StoreReportRequest $request)
     {
+       // echo "sdfdsf";
+       // die();
+      
         $this->reportStore($request);
-
-        return redirect()->back()->with('toast', Report::where('user_id', '=', $request->user()->id)->orderBy('id', 'desc')->limit(1)->get());
+        if(isset($request->user_idhwe))
+                {
+                   $url= $request->url;
+                   // die();
+                    $urlnew = url('');
+                  // die();
+                  $getfinalrul=str_replace("https://","",$url);
+                  $redirectlink=  $urlnew."/reports/".$getfinalrul;
+                  return redirect()->to($redirectlink);
+                }
+                else
+                {
+                    return redirect()->back()->with('toast', Report::where('user_id', '=', $request->user()->id)->orderBy('id', 'desc')->limit(1)->get());
+                }
+        
     }
 
     /**
@@ -237,4 +273,9 @@ class ReportController extends Controller
 
         return false;
     }
+	
+	public function insert_report($url){
+		echo 'klfdshj';
+		 
+	}
 }

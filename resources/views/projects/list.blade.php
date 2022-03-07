@@ -149,7 +149,7 @@
                                                         <div class="d-flex align-items-center text-truncate">
                                                             <img src="https://icons.duckduckgo.com/ip3/{{ $project->project }}.ico" rel="noreferrer" class="width-4 height-4 {{ (__('lang_dir') == 'rtl' ? 'ml-3' : 'mr-3') }}">
 
-                                                            <a href="{{ route('reports', ['project' => $project->project]) }}" dir="ltr" class="text-truncate">{{ $project->project }}</a>
+                                                            <a href="{{ route('reports', ['project' => $project->project]) }}" dir="ltr" class="text-truncate ">{{ $project->project }}</a>
                                                         </div>
                                                     </div>
 

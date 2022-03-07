@@ -133,7 +133,7 @@
                         <div class="row align-items-center">
                             <div class="col-12 col-sm d-flex text-truncate">
                                 @if($cronjob->name == 'cache')
-                                    <div class="badge badge-primary text-truncate">
+                                    <div class="badge badge-primary text-truncate xsxxxxx">
                                         {{ $cronjob->name }}
                                     </div>
                                 @endif

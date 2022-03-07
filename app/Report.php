@@ -115,6 +115,7 @@ class Report extends Model
                 $points += config('settings.report_score_' . $value['importance']);
             }
         }
+        
 
         return $points;
     }
@@ -288,11 +289,14 @@ class Report extends Model
             if (in_array($key, $this->categories['performance'])) {
                 if (!$value['passed'] && $value['importance'] == 'medium') {
                     $count += 1;
+					
                 }
+				
             }
         }
 
         return $count;
+	
     }
 
     /**

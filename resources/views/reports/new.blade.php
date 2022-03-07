@@ -1,4 +1,9 @@
 @include('reports.partials.toast')
+@php
+{{ 
+$data = app('request')->input('data');
+}}
+@endphp
 
 <div class="card border-0 shadow-sm mt-3">
     <div class="card-body">
@@ -10,7 +15,7 @@
                         <div class="col-12 col-md">
                             <div>
                                 <div class="input-group input-group-lg">
-                                    <input type="text" dir="ltr" name="url" class="form-control{{ $errors->has('url') ? ' is-invalid' : '' }} font-size-lg" autocapitalize="none" spellcheck="false" id="i-url" value="{{ old('url') }}" placeholder="{{ request()->input('project') ? 'http://' . request()->input('project') : 'https://example.com' }}" autofocus>
+                                    <input type="text" dir="ltr" name="url" data-url="{{$data}}" class="form-control{{ $errors->has('url') ? ' is-invalid' : '' }} font-size-lg" autocapitalize="none" spellcheck="false" id="i-url" value="{{ old('url') }}" placeholder="{{ request()->input('project') ? 'http://' . request()->input('project') : 'https://example.com' }}" autofocus>
 
                                     <div class="input-group-append">
                                         <a href="#" class="btn text-secondary bg-transparent input-group-text d-flex align-items-center" data-toggle="collapse" data-target="#advanced-options" aria-expanded="false">@include('icons.settings', ['class' => 'fill-current width-4 height-4']) <span class="d-none d-md-block font-size-base {{ (__('lang_dir') == 'rtl' ? 'mr-2' : 'ml-2') }}">{{ __('Advanced') }}</span></a>

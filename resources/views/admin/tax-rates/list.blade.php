@@ -135,7 +135,7 @@
                             <div class="col text-truncate">
                                 <div class="row text-truncate">
                                     <div class="col-12 col-lg-5 text-truncate">
-                                        <a href="{{ route('admin.tax_rates.edit', $taxRate->id) }}" class="text-truncate">{{ $taxRate->name }}</a>
+                                        <a href="{{ route('admin.tax_rates.edit', $taxRate->id) }}" class="text-truncate hhhhhh">{{ $taxRate->name }}</a>
                                     </div>
 
                                     <div class="col-12 col-lg-5 text-truncate">

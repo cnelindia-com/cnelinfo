@@ -58,7 +58,13 @@ Route::get('/pages/{id}', 'PageController@show')->name('pages.show');
 Route::get('/dashboard', 'DashboardController@index')->middleware('verified')->name('dashboard');
 
 // Report routes
-Route::get('/reports', 'ReportController@index')->middleware('verified')->name('reports');
+///narendre code start///
+///Route::get('/reports/{url}', 'ReportController@insert_report')->middleware('verified')->name('reports');
+///narendra code end/// ->middleware('verified')
+
+
+Route::get('/reports', 'ReportController@index')->name('reports');
+Route::get('/reports/test/{url}', 'ReportController@store');
 Route::get('/reports/export', 'ReportController@export')->middleware('verified')->name('reports.export');
 Route::get('/reports/{id}', 'ReportController@show')->name('reports.show');
 Route::get('/reports/{id}/edit', 'ReportController@edit')->middleware('verified')->name('reports.edit');

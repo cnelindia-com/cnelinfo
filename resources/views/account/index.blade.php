@@ -52,7 +52,7 @@
     @foreach($settings as $setting)
         <div class="col-12 mt-3">
             <div class="card border-0 h-100 shadow-sm">
-                <div class="card-body d-flex align-items-center text-truncate">
+                <div class="card-body d-flex align-items-center text-truncate ">hhhhhhh
                     <div class="d-flex position-relative text-primary width-8 height-8 align-items-center justify-content-center flex-shrink-0">
                         <div class="position-absolute bg-primary opacity-10 top-0 right-0 bottom-0 left-0 border-radius-lg"></div>
                         @include('icons.' . $setting['icon'], ['class' => 'fill-current width-4 height-4'])

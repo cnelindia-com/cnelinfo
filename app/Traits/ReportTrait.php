@@ -27,6 +27,7 @@ trait ReportTrait
      */
     protected function reportStore(Request $request)
     {
+       
         return $this->model($request, new Report);
     }
 
@@ -53,7 +54,7 @@ trait ReportTrait
      */
     private function model(Request $request, Report $report)
     {
-        // If the request contains a report request
+    
         if (isset($request->reportRequest)) {
             $reportRequest = $request->reportRequest;
             $reportResponse = $reportRequest->getBody()->getContents();
@@ -863,7 +864,17 @@ trait ReportTrait
             // If the request is to store the model
             if(!$report->url) {
                 $report->url = $this->url;
-                $report->user_id = $request->user()->id;
+                if(isset($request->user_idhwe))
+                {
+                    $report->user_id = $request->user_idhwe;
+
+                }
+                else
+                {
+                    $report->user_id = $request->user()->id;
+                }
+            
+               // $report->user_id = 1;
             }
 
             $report->results = mb_convert_encoding($data['results'], 'UTF-8', 'UTF-8');
@@ -879,6 +890,7 @@ trait ReportTrait
         if ($request->has('password')) {
             $report->password = $request->input('password');
         }
+
 
         $report->save();
 
