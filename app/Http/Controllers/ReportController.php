@@ -62,6 +62,7 @@ class ReportController extends Controller
               return view('reports.list', ['reports' => $reports, 'projects' => $projects]);
               
             }else{   
+               // die;
                 return view('reports.custom_view');
         }
     }
@@ -81,7 +82,14 @@ class ReportController extends Controller
 			$report_id =$r_data['id'];
 		 }
 		if(empty($report_id)){
-			
+		
+$prefix = "@";
+ $index = strpos($url, $prefix) + strlen($prefix);
+ if($index!='1'){
+    $url = substr($url, $index); 
+ }
+ 
+
 			return view('reports.custom_view', ['data' => $url]);
 
 		}
@@ -123,6 +131,7 @@ class ReportController extends Controller
        // die();
       
         $this->reportStore($request);
+       
         if(isset($request->user_idhwe))
                 {
                    $url= $request->url;
@@ -274,8 +283,4 @@ class ReportController extends Controller
         return false;
     }
 	
-	public function insert_report($url){
-		echo 'klfdshj';
-		 
-	}
 }

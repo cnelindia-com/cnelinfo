@@ -1,5 +1,5 @@
 
-<div class="bg-base-1 flex-fill" style="display:none">
+<div class="bg-base-1 flex-fill" style="display:none" >
     <div class="container py-3 my-3">
         <div class="row">
             <div class="col-10" style="left: 33%; position: absolute;">

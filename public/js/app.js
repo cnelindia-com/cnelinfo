@@ -7376,13 +7376,7 @@ let popupCenter = (url, title, w, h) => {
 };
 
 $('document').ready(function(){
-	//alert("sdfdsf");
-	$("#buttonchecksubmit").trigger("click");
-var data = $('.form-control.font-size-lg').attr('data-url');
 
-if(data != ''){
-	var data = 'https://'+data;
-	$('.form-control.font-size-lg').val(data);
-	$(".btn.btn-primary.btn-lg.btn-block.font-size-lg.mt-3.mt-md-0.position-relative").trigger("click");
-}
+	$("#buttonchecksubmit").trigger("click");
+
 })
